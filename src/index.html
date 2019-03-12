@@ -1,14 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CaptitalistCli</title>
-  <base href="/">
+  <head>
+    <meta charset="utf-8" />
+    <title>CaptitalistCli</title>
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <app-root></app-root>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">Entete1</div>
+        <div class="col-md-4">Entete2</div>
+        <div class="col-md-4">Entete3</div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">Partie Gauche</div>
+        <div class="col-md-10">Partie droite</div>
+      </div>
+    </div>
+  </body>
 </html>
