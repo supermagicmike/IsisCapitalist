@@ -1,23 +1,33 @@
 <div class="row" id="worldHeader">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
-    <span id="worldname">{{ world.name }}</span>
-  </div>
-  <div class="col-md-4"></div>
+    <div class="col-md-4">
+         Menu
+    </div>
+    <div class="col-md-4">
+        <div class="WorldLogo">
+            <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
+        </div>
+        <div id="worldname">
+            {{ world.name }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        Argents
+    </div>
 </div>
 <div class="row" id="productRow">
-  <div class="col-md-4"></div>
-  <div class="col-md-8">
-    <app-product
-      [prod]="world.products.product[0]"
-      [serv]="server"
-      class="product"
-    ></app-product>
-    <app-product
-      [prod]="world.products.product[1]"
-      [serv]="server"
-      class="product"
-    ></app-product>
-  </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-8" >
+        <app-product
+        [prod]="world.products.product[0]"
+        [serv]="server"
+        class="product"
+        ></app-product>
+        <app-product
+        [prod]="world.products.product[1]"
+        [serv]="server"
+        class="product"
+        ></app-product>
+    </div>
 </div>
