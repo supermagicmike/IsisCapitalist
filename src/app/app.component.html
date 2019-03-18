@@ -2,7 +2,8 @@
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
-    <span id="worldname">{{ world.name }}</span>
+    <span id="worldName">{{ world.name }}</span>
+    <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span>
   </div>
   <div class="col-md-4"></div>
 </div>
@@ -10,12 +11,8 @@
   <div class="col-md-4"></div>
   <div class="col-md-8">
     <app-product
-      [prod]="world.products.product[0]"
-      [serv]="server"
-      class="product"
-    ></app-product>
-    <app-product
-      [prod]="world.products.product[1]"
+      *ngFor="let product of world.products.product"
+      [prod]="product"
       [serv]="server"
       class="product"
     ></app-product>
