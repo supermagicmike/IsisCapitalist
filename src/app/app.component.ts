@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { World } from "./world";
+import { World, Product } from "./world";
 import { RestserviceService } from "./restservice.service";
 
 @Component({
@@ -16,5 +16,9 @@ export class AppComponent {
     service.getWorld().then(world => {
       this.world = world;
     });
+  }
+  onProductionDone(p: Product) {
+    this.world.money += p.cout;
+    this.world.score += p.cout;
   }
 }

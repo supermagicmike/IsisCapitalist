@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { Product } from "../world";
 declare var require;
 
@@ -18,6 +25,7 @@ export class ProductComponent implements OnInit {
   @Input()
   set prod(value: Product) {
     this.product = value;
+    this.lastUpdate = Date.now();
   }
   @Input()
   set serv(value: string) {
@@ -38,20 +46,28 @@ export class ProductComponent implements OnInit {
   }
 
   startFabrication() {
-    if (this.product.quantite > 0) {
+    if (this.product.quantite >= 1) {
       this.product.timeleft = this.product.vitesse;
-      let progress = 1;
+      this.progressbar.set(0);
       this.progressbar.animate(1, { duration: this.product.vitesse });
-      this.progressbar.set(progress);
       this.lastUpdate = Date.now();
     }
   }
+
   calcScore() {
-    if (this.product.timeleft > 0) {
-      this.product.timeleft = Date.now() - this.product.timeleft;
-    }
-    if (this.product.timeleft <= 0) {
-      this.product.timeleft = 0;
+    let elapsedTime = Date.now() - this.lastUpdate;
+    this.lastUpdate = Date.now();
+    if (this.product.timeleft != 0) {
+      this.product.timeleft = this.product.timeleft - elapsedTime;
+      if (this.product.timeleft <= 0) {
+        this.product.timeleft = 0;
+        this.progressbar.set(0);
+        // on prévient le composant parent que ce produit a généré son revenu.
+        this.notifyProduction.emit(this.product);
+      }
     }
   }
+  @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<
+    Product
+  >();
 }
