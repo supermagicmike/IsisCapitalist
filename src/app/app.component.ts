@@ -17,8 +17,10 @@ export class AppComponent {
       this.world = world;
     });
   }
+
   onProductionDone(p: Product) {
-    this.world.money += p.cout;
-    this.world.score += p.cout;
+    console.log("je suis en onproductionDone");
+    this.world.money += p.revenu - p.cout;
+    this.world.score += p.revenu;
   }
 }

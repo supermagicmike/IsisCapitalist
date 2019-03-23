@@ -21,6 +21,11 @@ export class ProductComponent implements OnInit {
   server: string;
   progressbar: any;
   lastUpdate: any;
+  _qtmulti: string;
+  @Input() set qtmulti(value: string) {
+    this._qtmulti = value;
+    if (this._qtmulti && this.product) this.calcMaxCanBuy();
+  }
 
   @Input()
   set prod(value: Product) {
@@ -31,6 +36,7 @@ export class ProductComponent implements OnInit {
   set serv(value: string) {
     this.server = value;
   }
+
   @ViewChild("bar") progressBarItem;
 
   constructor() {}
@@ -67,6 +73,8 @@ export class ProductComponent implements OnInit {
       }
     }
   }
+
+  calcMaxCanBuy() {}
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<
     Product
   >();
