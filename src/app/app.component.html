@@ -1,13 +1,19 @@
 <div class="row" id="worldHeader">
-  <div class="col-md-4"></div>
   <div class="col-md-4">
-    <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
-    <span id="worldName">{{ world.name }}</span>
-    <span id="worldName">score : {{ world.score }}</span>
-    <span id="worldName">money: {{ world.money }}</span>
+    Menu
+  </div>
+  <div class="col-md-4">
+    <div class="WorldLogo">
+      <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
+    </div>
+    <div id="worldname">
+      {{ world.name }}
+    </div>
+  </div>
+  <div class="col-md-4">
+    Argents : {{ world.money }}
     <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span>
   </div>
-  <div class="col-md-4"></div>
 </div>
 <div class="row" id="productRow">
   <div class="col-md-4"></div>
