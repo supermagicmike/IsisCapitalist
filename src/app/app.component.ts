@@ -11,16 +11,30 @@ export class AppComponent {
   title = "captitalist-cli";
   world: World = new World();
   server: string;
+  qtmulti: string;
+  price = ["x1", "x10", "x100", "max"];
   constructor(private service: RestserviceService) {
     this.server = service.getServer();
     service.getWorld().then(world => {
       this.world = world;
+      this.qtmulti = this.price[0];
     });
   }
 
   onProductionDone(p: Product) {
-    console.log("je suis en onproductionDone");
-    this.world.money += p.revenu - p.cout;
+    this.world.money += p.revenu;
     this.world.score += p.revenu;
+  }
+  onBuy(number) {
+    this.world.money = this.world.money - number;
+  }
+
+  changeQtmulti() {
+    let index = this.price.indexOf(this.qtmulti);
+    if (index < this.price.length - 1) {
+      this.qtmulti = this.price[index + 1];
+    } else {
+      this.qtmulti = this.price[0];
+    }
   }
 }

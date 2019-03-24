@@ -21,12 +21,18 @@ export class ProductComponent implements OnInit {
   server: string;
   progressbar: any;
   lastUpdate: any;
+  worldMoney: number;
   _qtmulti: string;
+  achat: number;
+
   @Input() set qtmulti(value: string) {
     this._qtmulti = value;
     if (this._qtmulti && this.product) this.calcMaxCanBuy();
   }
 
+  @Input() set money(value: number) {
+    this.worldMoney = value;
+  }
   @Input()
   set prod(value: Product) {
     this.product = value;
@@ -74,8 +80,39 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  calcMaxCanBuy() {}
+  acheterProduit() {
+    if (this.calcMaxCanBuy() < this.worldMoney) {
+      this.product.quantite += this.achat;
+      this.notifyAchat.emit(this.calcMaxCanBuy());
+    }
+  }
+
+  calcMaxCanBuy() {
+    let res = this.product.cout;
+    console.log("qt multi:" + this._qtmulti);
+    if (this._qtmulti === "max") {
+      let cpt = 0;
+      while (res + res * this.product.croissance < this.worldMoney) {
+        console.log("this. cout boucle" + res);
+        res += res * this.product.croissance;
+        console.log(res);
+        cpt++;
+      }
+      this.achat = cpt;
+    } else {
+      let multiplicateur = parseInt(this._qtmulti.substr(1));
+      res =
+        res *
+        ((1 - this.product.croissance ** (multiplicateur + 1)) /
+          (1 - this.product.croissance));
+      this.achat = multiplicateur;
+    }
+    return res;
+  }
+
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<
     Product
   >();
+
+  @Output() notifyAchat: EventEmitter<number> = new EventEmitter<number>();
 }
