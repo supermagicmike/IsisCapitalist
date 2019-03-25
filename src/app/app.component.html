@@ -6,6 +6,14 @@
     <span id="worldName">score : {{ world.score }}</span>
     <span id="worldName">money:</span>
     <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span>
+    <button
+      id="qtMulti"
+      type="button"
+      (click)="changeQtmulti()"
+      class="btn btn-primary"
+    >
+      {{ qtmulti }}
+    </button>
   </div>
   <div class="col-md-4"></div>
 </div>
@@ -17,8 +25,10 @@
       [prod]="product"
       [serv]="server"
       [qtmulti]="qtmulti"
+      [money]="world.money"
       class="product"
       (notifyProduction)="onProductionDone($event)"
+      (notifyAchat)="onBuy($event)"
     ></app-product>
   </div>
 </div>

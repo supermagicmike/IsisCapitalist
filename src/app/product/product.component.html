@@ -7,6 +7,15 @@
         (click)="startFabrication()"
       />
       <div class="quantite">{{ this.product.quantite }}</div>
+      <button
+        id="achat produit"
+        type="button"
+        ng-model="button"
+        [disabled]="calcMaxCanBuy() > worldMoney"
+        (click)="acheterProduit()"
+      >
+        worldMoney : {{ worldMoney }} buy {{ achat }} :{{ calcMaxCanBuy() }}$
+      </button>
       <div class="progress" #bar></div>
     </div>
   </div>
