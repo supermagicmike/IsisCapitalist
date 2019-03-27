@@ -1,5 +1,5 @@
-.product_name{
-  margin:0 0 5px 0;
+.product_name {
+  margin: 0 0 5px 0;
 }
 
 .quantite {
@@ -7,10 +7,39 @@
   bottom: -10px;
 }
 
-#achat_produit{
+#achat_produit {
   display: block;
-  margin:auto;
+  margin: auto;
 }
-.progress{
-  margin:60px 0 5px 0;
+.progress {
+  margin: 60px 0 5px 0;
+}
+.achat_button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.achat_button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.achat_button:hover {
+  background-color: #3e8e41;
+}
+
+.achat_button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

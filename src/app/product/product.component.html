@@ -3,23 +3,25 @@
     <div class="product_name">
       {{ this.product.name }}
     </div>
-      <img
-        [attr.src]="server + '/icones/' + this.product.logo"
-        class="round"
-        (click)="startFabrication()"
-      />
-      <div class="quantite">
-        {{ this.product.quantite }}
-      </div>
+    <img
+      [attr.src]="server + '/icones/' + this.product.logo"
+      class="round"
+      (click)="startFabrication()"
+    />
+    <div class="quantite">
+      {{ this.product.quantite }}
+    </div>
   </div>
   <div class="col-md-8">
     <div class="progress" #bar></div>
     <button
-    id="achat_produit"
-    type="button"
-    ng-model="button"
-    [disabled]="calcMaxCanBuy() > worldMoney"
-    (click)="acheterProduit()">
+      class="achat_button"
+      id="achat_produit"
+      type="button"
+      ng-model="button"
+      [disabled]="calcMaxCanBuy() > worldMoney"
+      (click)="acheterProduit()"
+    >
       buy {{ achat }} for {{ calcMaxCanBuy() }}$
     </button>
   </div>
