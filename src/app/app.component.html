@@ -1,12 +1,17 @@
 <div class="row" id="worldHeader">
   <div class="col-md-4">
+    
+  </div>
+  <div class="col-md-4">
     <div class="WorldLogo">
       <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
     </div>
+    <span id="worldName">{{world.name}}</span>
+    
+    
+    
   </div>
   <div class="col-md-4">
-    
-    <span id="worldName">{{world.name}}</span>
     <span id="worldName">score : {{ world.score }}</span>
     <span id="worldName">money:</span>
     <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span>
@@ -17,9 +22,7 @@
       class="btn_btn-primary"
     >
       {{ qtmulti }}
-    </button>
-  </div>
-  <div class="col-md-4"></div>
+    </button></div>
 </div>
 <div class="row" id="productRow">
   <div class="col-md-4">

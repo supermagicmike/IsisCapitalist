@@ -1,14 +1,14 @@
-.round {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
 .logoWrapper {
   position: relative;
 }
 
 .quantite {
+  float:center;
   position: absolute;
   bottom: -10px;
+}
+
+#achat_produit{
+  display: block;
+  margin:auto;
 }

@@ -1,10 +1,7 @@
 .row{
     margin:10px;
 }
-.WorldLogo{
-    height:200px;
-    width:200px;
-}
+
 .btn_btn-primary{
-    float: left;
+    float: right;
 }
