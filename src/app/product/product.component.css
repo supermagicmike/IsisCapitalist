@@ -1,14 +1,16 @@
-.logoWrapper {
-  position: relative;
+.product_name{
+  margin:0 0 5px 0;
 }
 
 .quantite {
-  float:center;
-  position: absolute;
+  text-align: center;
   bottom: -10px;
 }
 
 #achat_produit{
   display: block;
   margin:auto;
+}
+.progress{
+  margin:60px 0 5px 0;
 }

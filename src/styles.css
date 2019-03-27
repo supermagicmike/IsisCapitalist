@@ -2,7 +2,8 @@
 .round{
     width:100px;
     height:100px;   
-    border-radius: 25%
+    border-radius: 25%;
+    margin: 0 0 5px 0;
 }
 .product{
     position: relative;
