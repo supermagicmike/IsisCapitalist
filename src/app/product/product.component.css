@@ -11,13 +11,17 @@
   display: block;
   margin: auto;
 }
+
 .progress {
   margin: 60px 0 5px 0;
+  height: 40px;
+  stroke: red;
 }
+
 .achat_button {
   display: inline-block;
   padding: 15px 25px;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -32,10 +36,6 @@
 .achat_button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.achat_button:hover {
-  background-color: #3e8e41;
 }
 
 .achat_button:active {

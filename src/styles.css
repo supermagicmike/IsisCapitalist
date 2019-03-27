@@ -1,17 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-.round{
-    width:100px;
-    height:100px;   
-    border-radius: 25%;
-    margin: 0 0 5px 0;
+.round {
+  width: 150px;
+  height: 150px;
+  border-radius: 25%;
+  margin: 0 0 5px 0;
 }
-.product{
-    position: relative;
-    margin : 5px;
+.product {
+  position: relative;
+  margin: 5px;
 }
 
-.WorldLogo{
-    float:left;
-    height:100px;
-    width:100px;
+.WorldLogo {
+  float: left;
+  height: 100px;
+  width: 100px;
 }
