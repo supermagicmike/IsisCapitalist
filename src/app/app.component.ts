@@ -25,8 +25,12 @@ export class AppComponent {
     this.world.money += p.revenu;
     this.world.score += p.revenu;
   }
+
   onBuy(number) {
+    console.log("number :"+number)
+    console.log("world money :"+this.world.money)
     this.world.money = this.world.money - number;
+    console.log("world money after:"+ this.world.money);
   }
 
   changeQtmulti() {
