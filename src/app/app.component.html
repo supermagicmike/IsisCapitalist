@@ -1,5 +1,9 @@
 <div class="row" id="worldHeader">
   <div class="col-md-4">
+    <div class="buttonleft btn btn-primary btn-lg"
+    data-toggle="modal"(click)="managersModal.show()">
+    Managers
+  </div>
     
   </div>
   <div class="col-md-4">
@@ -41,3 +45,25 @@
     ></app-product>
   </div>
 </div>
+
+<app-modal #managersModal>
+  <div class="app-modal-header">
+    <h4 class="modal-title">Managers make you feel better !</h4>
+  </div>
+  <div class="app-modal-body">
+    <div *ngFor="let manager of world.managers.pallier">
+      <div class="row ">
+        <div class="col-md-4 text-center"><img
+          [attr.src]="server + '/icones/' + manager.logo"
+          class="round"
+        /></div>
+        <div class="col-md-8"><button class="btn-primary btn-lg text-center"[disabled]="manager.seuil > world.money">hire</button></div>
+      </div>
+    
+      {{manager.name}}
+      
+    </div>
+  </div>
+  <div class="app-modal-footer"> <button type="button" class="btn btn-default"
+      (click)="managersModal.hide()">Close</button> </div>
+</app-modal>
