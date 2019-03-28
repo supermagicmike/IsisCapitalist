@@ -51,7 +51,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.progressbar = new ProgressBar.Line(
       this.progressBarItem.nativeElement,
-      { strokeWidth: 50, color: "#00ff00" }
+      { strokeWidth: 50, color: "#3b863de3" }
     );
     
     setInterval(() => {
