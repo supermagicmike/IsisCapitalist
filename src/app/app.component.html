@@ -52,16 +52,13 @@
   </div>
   <div class="app-modal-body">
     <div *ngFor="let manager of world.managers.pallier">
-      <div class="row ">
+      <div *ngIf="!manager.unlocked" class="row ">
         <div class="col-md-4 text-center"><img
           [attr.src]="server + '/icones/' + manager.logo"
           class="round"
-        /></div>
+        />{{manager.name}}</div>
         <div class="col-md-8"><button class="btn-primary btn-lg text-center"[disabled]="manager.seuil > world.money">hire</button></div>
       </div>
-    
-      {{manager.name}}
-      
     </div>
   </div>
   <div class="app-modal-footer"> <button type="button" class="btn btn-default"
