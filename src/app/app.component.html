@@ -16,9 +16,9 @@
     
   </div>
   <div class="col-md-4">
-    <span id="worldName">score : {{ world.score }}</span>
-    <span id="worldName">money:</span>
-    <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span>
+    <span id="worldScore">score : {{ world.score }}</span>
+    <span id="worldMoney">money:
+    <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span></span>
     <button
       id="qtMulti"
       type="button"
@@ -44,6 +44,7 @@
       (notifyAchat)="onBuy($event)"
     ></app-product>
   </div>
+
 </div>
 
 <app-modal #managersModal>
@@ -64,3 +65,4 @@
   <div class="app-modal-footer"> <button type="button" class="btn btn-default"
       (click)="managersModal.hide()">Close</button> </div>
 </app-modal>
+
