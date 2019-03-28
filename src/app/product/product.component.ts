@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.progressbar = new ProgressBar.Line(
       this.progressBarItem.nativeElement,
-      { strokeWidth: 50, color: "red" }
+      { strokeWidth: 50, color: "#3b863de3" }
     );
     setInterval(() => {
       this.calcScore();
@@ -107,6 +107,7 @@ export class ProductComponent implements OnInit {
           (1 - this.product.croissance));
       this.achat = multiplicateur;
     }
+    
     return res;
   }
 
