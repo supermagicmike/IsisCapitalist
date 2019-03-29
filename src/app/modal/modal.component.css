@@ -2,3 +2,8 @@
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+
+.modal-content{
+    height:750px;
+    width:800px;
+  }
