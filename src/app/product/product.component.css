@@ -44,7 +44,13 @@
 }
 
 .achat_button:active {
-  background-color: #3e8e41;
+  background-color: #3e8e417a;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+#ProductCell{
+  background-image: linear-gradient(to top, rgb(61, 180, 6), rgb(255, 255, 255));
+  border-radius: 50px;
+  margin:10px 5px;
 }

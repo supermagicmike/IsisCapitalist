@@ -28,3 +28,29 @@
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
+
+#worldScore{
+  padding: 10px;
+  text-align:center;
+  font-size: 25px;
+  cursor: none;
+  color: #fff;
+  background-color: #be2cd1e3;
+  border: none;
+  border-radius: 15px;
+  margin:20% 25%;
+  display:inline-block;
+}
+
+#worldCellMoney{
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #be2cd1e3;
+  border: none;
+  border-radius: 15px;
+  margin: 10% 10%;
+  display: inline-block;
+}
