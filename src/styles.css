@@ -5,13 +5,26 @@
   border-radius: 25%;
   margin: 0 0 5px 0;
 }
+
+#worldName{
+  font-size:90px;
+}
+
 .product {
   position: relative;
   margin: 5px;
 }
 
-.WorldLogo {
+.WorldLogo1 {
   float: left;
   height: 100px;
   width: 100px;
+}
+
+.WorldLogo2 {
+  float: right;
+  height: 100px;
+  width: 100px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }

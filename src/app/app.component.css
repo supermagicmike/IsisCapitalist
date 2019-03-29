@@ -4,9 +4,42 @@
 
 .btn_btn-primary{
     float: right;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #be2cd1e3;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
 }
 
-#worldName{
-    font-size:60px;
-}
+.btn_btn-primary:active {
+    background-color: #be2cd18a;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
+  #worldScore{
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: none;
+    color: #fff;
+    background-color: #be2cd1e3;
+    border: none;
+    border-radius: 15px;
+    margin:5px;
+  }
+
+  #worldCellMoney{
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #be2cd1e3;
+    border: none;
+    border-radius: 15px;
+  }

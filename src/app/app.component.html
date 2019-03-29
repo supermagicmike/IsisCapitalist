@@ -1,52 +1,45 @@
 <div class="row" id="worldHeader">
-  <div class="col-md-4">
+  <div class="col-md-2">
     <div class="buttonleft btn btn-primary btn-lg"
     data-toggle="modal"(click)="managersModal.show()">
     Managers
-  </div>
-    
-  </div>
-  <div class="col-md-4">
-    <div class="WorldLogo">
-      <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
     </div>
-    <span id="worldName">{{world.name}}</span>
-    
-    
-    
   </div>
-  <div class="col-md-4">
-    <span id="worldScore">score : {{ world.score }}</span>
-    <span id="worldMoney">money:
-    <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span></span>
-    <button
-      id="qtMulti"
-      type="button"
-      (click)="changeQtmulti()"
-      class="btn_btn-primary"
-    >
-      {{ qtmulti }}
-    </button></div>
-</div>
-<div class="row" id="productRow">
-  <div class="col-md-4">
-    
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-8">
+        <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo1" />
+        <span id="worldName">{{world.name}}</span>
+        <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo2" />
+      </div>
+      <div class="col-md-4">
+        <span id="worldScore">score : {{ world.score }}</span>
+        <span id="worldCellMoney">
+        <span [innerHTML]="world.money | bigvalue" id="worlMoney">  </span>$</span>
+        <button
+        id="qtMulti"
+        type="button"
+        (click)="changeQtmulti()"
+        class="btn_btn-primary"
+        >
+          {{ qtmulti }}
+        </button>
+      </div>
+    </div>
+    <div class="row" id="productRow">
+      <app-product
+        *ngFor="let product of world.products.product"
+        [prod]="product"
+        [serv]="server"
+        [qtmulti]="qtmulti"
+        [money]="world.money"
+        class="col-6"
+        (notifyProduction)="onProductionDone($event)"
+        (notifyAchat)="onBuy($event)"
+      ></app-product>
+    </div>
   </div>
-  <div class="col-md-8">
-    <app-product
-      *ngFor="let product of world.products.product"
-      [prod]="product"
-      [serv]="server"
-      [qtmulti]="qtmulti"
-      [money]="world.money"
-      class="product"
-      (notifyProduction)="onProductionDone($event)"
-      (notifyAchat)="onBuy($event)"
-    ></app-product>
-  </div>
-
-</div>
-
+</div>  
 <app-modal #managersModal>
   <div class="app-modal-header">
     <h4 class="modal-title">Managers make you feel better !</h4>
