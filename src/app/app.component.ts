@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { World, Product } from "./world";
+import { World, Product,Pallier } from "./world";
 import { RestserviceService } from "./restservice.service";
 
 @Component({
@@ -27,10 +27,7 @@ export class AppComponent {
   }
 
   onBuy(number) {
-    console.log("number :"+number)
-    console.log("world money :"+this.world.money)
     this.world.money = this.world.money - number;
-    console.log("world money after:"+ this.world.money);
   }
 
   changeQtmulti() {
@@ -39,6 +36,23 @@ export class AppComponent {
       this.qtmulti = this.price[index + 1];
     } else {
       this.qtmulti = this.price[0];
+    }
+  }
+
+  hire(manager:Pallier){
+    if (this.world.money>manager.seuil){
+      this.world.money-=manager.seuil;
+      manager.unlocked=true;
+      this.world.products.product.forEach(element => {
+        console.log("elements : ");
+        console.log("elements id : "+element.id);
+        console.log("idcible: "+manager.idcible);
+        console.log(element.id==manager.idcible);
+        if(element.id==manager.idcible){
+          element.managerUnlocked=true;
+          console.log("element in if : "+element+ "id : "+element.id)
+        }       
+      });
     }
   }
 }

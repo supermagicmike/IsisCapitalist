@@ -64,7 +64,7 @@ export class ProductComponent implements OnInit {
   }
 
   startFabrication() {
-    if (this.product.quantite >= 1) {
+    if (this.product.quantite >= 1 && this.product.timeleft==0) {
       this.product.timeleft = this.product.vitesse;
       this.progressbar.set(0);
       this.progressbar.animate(1, { duration: this.product.vitesse });
@@ -73,6 +73,7 @@ export class ProductComponent implements OnInit {
   }
 
   calcScore() {
+    if(this.product.managerUnlocked && this.product.timeleft==0){this.startFabrication()}
     if (this.product.quantite >= 1) {
     let elapsedTime = Date.now() - this.lastUpdate;
     this.lastUpdate = Date.now();
