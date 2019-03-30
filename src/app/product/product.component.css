@@ -64,3 +64,19 @@
     width: 35em;
   }
 }
+@media only screen and (min-width: 1000px) and (max-width: 1050px) {
+  [class*="achat_button"] {
+    margin-top: 1em !important;
+  }
+}
+@media only screen and (max-width: 552px) {
+  [class*="col-md-8"] {
+    width: 60%;
+  }
+  [class*="col-md-4"] {
+    width: 40%;
+  }
+  [id*="ProductCell"] {
+    height: 170px;
+  }
+}
