@@ -2,20 +2,21 @@
   background-image: linear-gradient(to top, rgb(61, 180, 6), rgb(255, 255, 255));
 }*/
 
-.row{
-  margin:10px;
+.row {
+  margin: 10px;
 }
 
-.btn_btn-primary{
+.btn_btn-primary {
   padding: 10px;
-  text-align:center;
+  text-align: center;
   font-size: 25px;
   color: #fff;
   background-color: #be2cd1e3;
   border: none;
   border-radius: 15px;
-  margin:10% 10%;
-  display:inline-block;
+  margin-top: 2em;
+  margin-left: 1em;
+  display: inline-block;
   box-shadow: 0 9px #999;
 }
 
@@ -25,9 +26,9 @@
   transform: translateY(4px);
 }
 
-.ManagerButton{
-  margin-top:15px;
-  text-align:center;
+.ManagerButton {
+  margin-top: 15px;
+  text-align: center;
   padding: 10px 15px;
   font-size: 25px;
   color: #fff;
@@ -38,29 +39,55 @@
 }
 
 .ManagerButton:active {
- 
   background-color: #d12c2c7e;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
-.ManagerName{
-  font-size:20px;
+.ManagerName {
+  font-size: 20px;
   text-align: center;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 }
 
-#ManagerCell{
-  background-image: linear-gradient(to top, rgb(61, 180, 6), rgb(255, 255, 255));
+#ManagerCell {
+  background-image: linear-gradient(
+    to top,
+    rgb(61, 180, 6),
+    rgb(255, 255, 255)
+  );
   border-radius: 15px 50px;
 }
 
-#OptionCell{
-  background-color:  rgb(104, 206, 56);
+#OptionCell {
+  background-color: rgb(104, 206, 56);
   border-radius: 50px;
 }
 
-.HireButton{
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  [id*="OptionCell"] {
+    width: 40em;
+  }
+
+  [class*="col-md-6"] {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 552px) {
+  /* For mobile phones: */
+  [id*="OptionCell"] {
+    width: 37em;
+  }
+
+  [id*="productRow"] {
+    position: absolute;
+    margin-bottom: 6em;
+    margin-left: 2em;
+  }
+}
+
+.HireButton {
   float: left;
   padding: 10px 15px;
   font-size: 20px;
@@ -69,7 +96,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
-  margin:10%;
+  margin: 10%;
 }
 
 .HireButton:active {
@@ -78,7 +105,7 @@
   transform: translateY(4px);
 }
 
-.CloseButton{
+.CloseButton {
   float: left;
   padding: 10px 15px;
   font-size: 20px;
