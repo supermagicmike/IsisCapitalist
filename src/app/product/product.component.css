@@ -1,16 +1,16 @@
 .product_name {
   margin: 0 0 5px 0;
-  font-size:20px;
+  font-size: 20px;
 }
 
-.col-6{
-  margin:5px 0;
+.col-6 {
+  margin: 5px 0;
 }
 
 .quantite {
   text-align: center;
   bottom: -10px;
-  font-size:15px;
+  font-size: 15px;
 }
 
 #achat_produit {
@@ -49,8 +49,18 @@
   transform: translateY(4px);
 }
 
-#ProductCell{
-  background-image: linear-gradient(to top, rgb(61, 180, 6), rgb(255, 255, 255));
+#ProductCell {
+  background-image: linear-gradient(
+    to top,
+    rgb(61, 180, 6),
+    rgb(255, 255, 255)
+  );
   border-radius: 50px;
-  margin:10px 5px;
+  margin: 10px 5px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+  [id*="ProductCell"] {
+    width: 35em;
+  }
 }

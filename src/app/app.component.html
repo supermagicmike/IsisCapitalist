@@ -1,68 +1,101 @@
 <div class="row" id="worldHeader">
-  <div class="col-md-4">
-    <div class="buttonleft btn btn-primary btn-lg"
-    data-toggle="modal"(click)="managersModal.show()">
-    Managers
-  </div>
-    
-  </div>
-  <div class="col-md-4">
-    <div class="WorldLogo">
-      <img [attr.src]="server + '/icones/' + world.logo" class="img-fluid" />
+  <div class="col-md-2">
+    <div class="centerBlock">
+      <span id="worldScore">{{ world.score }}</span>
     </div>
-    <span id="worldName">{{world.name}}</span>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="centerBlock">
+          <img
+            [attr.src]="server + '/icones/' + world.logo"
+            class="WorldLogo1"
+          />
+          <span id="worldName">{{ world.name }}</span>
+          <img
+            [attr.src]="server + '/icones/' + world.logo"
+            class="WorldLogo2"
+          />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span id="worldCellMoney">
+          <span [innerHTML]="world.money | bigvalue" id="worlMoney"> </span
+          >$</span
+        >
+        <button
+          id="qtMulti"
+          type="button"
+          (click)="changeQtmulti()"
+          class="btn_btn-primary"
+        >
+          {{ qtmulti }}
+        </button>
+      </div>
+    </div>
     
     
     
   </div>
-  <div class="col-md-4">
-    <span id="worldScore">score : {{ world.score }}</span>
-    <span id="worldMoney">money:
-    <span [innerHTML]="world.money | bigvalue" id="worldMoney"></span></span>
-    <button
-      id="qtMulti"
-      type="button"
-      (click)="changeQtmulti()"
-      class="btn_btn-primary"
-    >
-      {{ qtmulti }}
-    </button></div>
+  <div class="row">
+    <div class="col-md-2" id="OptionCell">
+      <div
+        class="ManagerButton"
+        data-toggle="modal"
+        (click)="managersModal.show()"
+      >
+        Managers
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="row" id="productRow">
+        <app-product
+          *ngFor="let product of world.products.product"
+          [prod]="product"
+          [serv]="server"
+          [qtmulti]="qtmulti"
+          [money]="world.money"
+          class="col-md-6 col-sm-12"
+          (notifyProduction)="onProductionDone($event)"
+          (notifyAchat)="onBuy($event)"
+        ></app-product>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row" id="productRow">
-  <div class="col-md-4">
-    
-  </div>
-  <div class="col-md-8">
-    <app-product
-      *ngFor="let product of world.products.product"
-      [prod]="product"
-      [serv]="server"
-      [qtmulti]="qtmulti"
-      [money]="world.money"
-      class="product"
-      (notifyProduction)="onProductionDone($event)"
-      (notifyAchat)="onBuy($event)"
-    ></app-product>
-  </div>
-
-</div>
-
 <app-modal #managersModal>
   <div class="app-modal-header">
     <h4 class="modal-title">Managers make you feel better !</h4>
   </div>
   <div class="app-modal-body">
-    <div *ngFor="let manager of world.managers.pallier">
-      <div *ngIf="!manager.unlocked" class="row ">
-        <div class="col-md-4 text-center"><img
-          [attr.src]="server + '/icones/' + manager.logo"
-          class="round"
-        />{{manager.name}}</div>
-        <div class="col-md-8"><button class="btn-primary btn-lg text-center"[disabled]="manager.seuil > world.money" (click)="hire(manager)">hire</button></div>
+    <div class="centerBlock">
+      <div class="row">
+        <div *ngFor="let manager of world.managers.pallier" class="col-6">
+          <div *ngIf="!manager.unlocked" class="row" id="ManagerCell">
+            <div class="col-md-4 text-center">
+              <img
+                [attr.src]="server + '/icones/' + manager.logo"
+                class="round"
+              />
+            </div>
+            <div class="col-md-8">
+              <button
+                class="HireButton"
+                [disabled]="manager.seuil > world.money" (click)="hire(manager)"
+              >
+                Engager
+              </button>
+            </div>
+          </div>
+          <div class="ManagerName">Manager {{ manager.name }}</div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="app-modal-footer"> <button type="button" class="btn btn-default"
-      (click)="managersModal.hide()">Close</button> </div>
+  <div class="app-modal-footer">
+    <button type="button" class="CloseButton" (click)="managersModal.hide()">
+      Close
+    </button>
+  </div>
 </app-modal>
-
