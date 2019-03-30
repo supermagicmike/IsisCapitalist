@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="ProductCell">
   <div class="col-md-4 text-center">
     <div class="product_name">
       {{ this.product.name }}
@@ -13,9 +13,6 @@
     </div>
   </div>
   <div class="col-md-8">
-
-
-    BUY 1 for {{ getRealPrice() }}
     <div class="progress" #bar></div>
     <button
       class="achat_button"

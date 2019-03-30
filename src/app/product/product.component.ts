@@ -25,7 +25,6 @@ export class ProductComponent implements OnInit {
   _qtmulti: string;
   achat: number;
 
-
   @Input() set qtmulti(value: string) {
     this._qtmulti = value;
     if (this._qtmulti && this.product) this.calcMaxCanBuy();
@@ -53,14 +52,14 @@ export class ProductComponent implements OnInit {
       this.progressBarItem.nativeElement,
       { strokeWidth: 50, color: "#3b863de3" }
     );
-    
+
     setInterval(() => {
       this.calcScore();
     }, 100);
   }
 
-  getRealPrice(){
-    return(this.product.cout*this.product.croissance**this.product.quantite)
+  getRealPrice() {
+    return this.product.cout * this.product.croissance ** this.product.quantite;
   }
 
   startFabrication() {
@@ -75,22 +74,22 @@ export class ProductComponent implements OnInit {
   calcScore() {
     if(this.product.managerUnlocked && this.product.timeleft==0){this.startFabrication()}
     if (this.product.quantite >= 1) {
-    let elapsedTime = Date.now() - this.lastUpdate;
-    this.lastUpdate = Date.now();
-    if (this.product.timeleft != 0) {
-      this.product.timeleft = this.product.timeleft - elapsedTime;
-      if (this.product.timeleft <= 0) {
-        this.product.timeleft = 0;
-        this.progressbar.set(0);
-        // on prévient le composant parent que ce produit a généré son revenu.
-        this.notifyProduction.emit(this.product);
+      let elapsedTime = Date.now() - this.lastUpdate;
+      this.lastUpdate = Date.now();
+      if (this.product.timeleft != 0) {
+        this.product.timeleft = this.product.timeleft - elapsedTime;
+        if (this.product.timeleft <= 0) {
+          this.product.timeleft = 0;
+          this.progressbar.set(0);
+          // on prévient le composant parent que ce produit a généré son revenu.
+          this.notifyProduction.emit(this.product);
+        }
       }
     }
   }
-}
 
   acheterProduit() {
-    let max =this.calcMaxCanBuy();
+    let max = this.calcMaxCanBuy();
     if (max < this.worldMoney) {
       this.notifyAchat.emit(this.calcMaxCanBuy());
       this.product.quantite += this.achat;
@@ -103,21 +102,26 @@ export class ProductComponent implements OnInit {
     let multiplicateur;
 
     if (this._qtmulti === "max") {
-
-  //multiplicateur =Math.round((Math.log((this.worldMoney*(this.product.croissance-1))/(price)+1))/Math.log(this.product.croissance)-1);
-  multiplicateur= Math.ceil((Math.log(1-(this.worldMoney*(1-this.product.croissance)/(price))))/(Math.log(this.product.croissance))-1) 
-  console.log(multiplicateur)
- if (multiplicateur<=0){
-    multiplicateur=1;
-  }     
+      //multiplicateur =Math.round((Math.log((this.worldMoney*(this.product.croissance-1))/(price)+1))/Math.log(this.product.croissance)-1);
+      multiplicateur = Math.ceil(
+        Math.log(
+          1 - (this.worldMoney * (1 - this.product.croissance)) / price
+        ) /
+          Math.log(this.product.croissance) -
+          1
+      );
+      console.log(multiplicateur);
+      if (multiplicateur <= 0) {
+        multiplicateur = 1;
+      }
     } else {
-       multiplicateur = parseInt(this._qtmulti.substr(1));
+      multiplicateur = parseInt(this._qtmulti.substr(1));
     }
-   res =
-        price *
-        ((1 - this.product.croissance ** (multiplicateur)) /
-          (1 - this.product.croissance));
-      this.achat = multiplicateur;
+    res =
+      price *
+      ((1 - this.product.croissance ** multiplicateur) /
+        (1 - this.product.croissance));
+    this.achat = multiplicateur;
     return res;
   }
 
@@ -127,5 +131,3 @@ export class ProductComponent implements OnInit {
 
   @Output() notifyAchat: EventEmitter<number> = new EventEmitter<number>();
 }
-
-
