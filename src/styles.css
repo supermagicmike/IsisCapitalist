@@ -6,8 +6,8 @@
   margin: 0 0 5px 0;
 }
 
-#worldName{
-  font-size:90px;
+#worldName {
+  font-size: 6em;
 }
 
 .product {
@@ -15,34 +15,41 @@
   margin: 5px;
 }
 
+.centerBlock {
+  margin: auto;
+  display: table;
+}
+
 .WorldLogo1 {
-  float: left;
+  float: right;
+  margin-top: 2em;
   height: 100px;
   width: 100px;
 }
 
 .WorldLogo2 {
-  float: right;
+  float: left;
+  margin-top: 2em;
   height: 100px;
   width: 100px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 
-#worldScore{
+#worldScore {
   padding: 10px;
-  text-align:center;
+  text-align: center;
   font-size: 25px;
   cursor: none;
   color: #fff;
   background-color: #be2cd1e3;
   border: none;
   border-radius: 15px;
-  margin:20% 25%;
-  display:inline-block;
+  margin-top: 2em;
+  display: inline-block;
 }
 
-#worldCellMoney{
+#worldCellMoney {
   padding: 10px;
   text-align: center;
   font-size: 25px;
@@ -51,6 +58,6 @@
   background-color: #be2cd1e3;
   border: none;
   border-radius: 15px;
-  margin: 10% 10%;
+  margin-top: 2em;
   display: inline-block;
 }
