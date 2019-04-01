@@ -33,10 +33,12 @@
           {{ qtmulti }}
         </button>
       </div>
+      <input
+        type="text"
+        [(ngModel)]="this.username"
+        (change)="onUsernameChanged()"
+      />
     </div>
-    
-    
-    
   </div>
   <div class="row">
     <div class="col-md-2" id="OptionCell">
@@ -45,6 +47,7 @@
         data-toggle="modal"
         (click)="managersModal.show()"
       >
+        <span class="badge">{{ this.checkNewManager() ? "New" : "" }}</span>
         Managers
       </div>
     </div>
@@ -63,6 +66,7 @@
       </div>
     </div>
   </div>
+  <toaster-container></toaster-container>
 </div>
 <app-modal #managersModal>
   <div class="app-modal-header">
@@ -82,7 +86,11 @@
             <div class="col-md-8">
               <button
                 class="HireButton"
-                [disabled]="manager.seuil > world.money" (click)="hire(manager)"
+                [disabled]="
+                  manager.seuil > world.money ||
+                  world.products.product[manager.idcible - 1].quantite <= 0
+                "
+                (click)="hire(manager)"
               >
                 Engager
               </button>
