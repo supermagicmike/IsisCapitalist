@@ -25,6 +25,11 @@
           {{ qtmulti }}
         </button>
       </div>
+      <input
+        type="text"
+        [(ngModel)]="this.username"
+        (change)="onUsernameChanged()"
+      />
     </div>
   </div>
   <div class="row">
@@ -34,6 +39,7 @@
         data-toggle="modal"
         (click)="managersModal.show()"
       >
+        <span class="badge">{{ this.checkNewManager() ? "New" : "" }}</span>
         Managers
       </div>
     </div>
@@ -52,6 +58,7 @@
       </div>
     </div>
   </div>
+  <toaster-container></toaster-container>
 </div>
 <app-modal #managersModal>
   <div class="app-modal-header">
@@ -61,7 +68,7 @@
     <div class="centerBlock">
       <div class="row">
         <div *ngFor="let manager of world.managers.pallier" class="col-6">
-          <div class="row" id="ManagerCell">
+          <div *ngIf="!manager.unlocked" class="row" id="ManagerCell">
             <div class="col-md-4 text-center">
               <img
                 [attr.src]="server + '/icones/' + manager.logo"
@@ -71,7 +78,11 @@
             <div class="col-md-8">
               <button
                 class="HireButton"
-                [disabled]="manager.seuil > world.money"
+                [disabled]="
+                  manager.seuil > world.money ||
+                  world.products.product[manager.idcible - 1].quantite <= 0
+                "
+                (click)="hire(manager)"
               >
                 Engager
               </button>

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 //import { World, Pallier, Product } from "./world";
 import { World, Product, Pallier } from "./world";
 
@@ -24,10 +24,17 @@ export class RestserviceService {
     console.error("An error occurred", error);
     return Promise.reject(error.message || error);
   }
+  private setHeaders(user: string): HttpHeaders {
+    var headers = new HttpHeaders();
+    headers.append("X-User", user);
+    return headers;
+  }
 
   getWorld(): Promise<World> {
     return this.http
-      .get(this.server + "/adventureisis/world")
+      .get(this.server + "/adventureisis/world", {
+        headers: this.setHeaders(this.user)
+      })
       .toPromise()
       .catch(this.handleError);
   }
