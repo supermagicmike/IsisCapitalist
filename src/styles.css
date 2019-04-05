@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+
+.round {
+  width: 100px;
+  height: 100px;
+  border-radius: 25%;
+  margin: 0 0 5px 0;
+}
+
+#worldName {
+  font-size: 6em;
+  margin-left: 1em;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1050px) {
+  [id*="worldName"] {
+    font-size: 2em !important;
+  }
+  [class*="WorldLogo1"] {
+    margin-top: -1em !important;
+    height: 50px !important;
+    width: 50px !important;
+  }
+  [class*="WorldLogo2"] {
+    margin-top: -1em !important;
+    height: 50px !important;
+    width: 50px !important;
+  }
+}
+
+.product {
+  position: relative;
+  margin: 5px;
+}
+
+.centerBlock {
+  margin: auto;
+  display: table;
+}
+
+.WorldLogo2 {
+  float: right;
+  margin-top: 2em;
+  height: 100px;
+  width: 100px;
+}
+
+.WorldLogo1 {
+  float: left;
+  margin-top: 2em;
+  height: 100px;
+  width: 100px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#worldScore {
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  cursor: none;
+  color: #fff;
+  background-color: #be2cd1e3;
+  border: none;
+  border-radius: 15px;
+  margin-top: 2em;
+  display: inline-block;
+}
+
+#worldCellMoney {
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #be2cd1e3;
+  border: none;
+  border-radius: 15px;
+  margin-top: 2em;
+  display: inline-block;
+}

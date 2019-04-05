@@ -1,20 +1,146 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="row" id="worldHeader">
+  <div class="col-md-2">
+    <div class="centerBlock">
+      <span id="worldScore">{{ world.score }}</span>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-8" style="margin-top:3em;">
+        <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo1" />
+        <span id="worldName">{{ world.name }}</span>
+        <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo2" />
+      </div>
+      <div class="col-md-4">
+        <span id="worldCellMoney">
+          <span [innerHTML]="world.money | bigvalue" id="worlMoney"> </span
+          >$</span
+        >
+        <button
+          id="qtMulti"
+          type="button"
+          (click)="changeQtmulti()"
+          class="btn_btn-primary"
+        >
+          {{ qtmulti }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2" id="OptionCell">
+      <div class="UserName">
+        <input
+          type="text"
+          [(ngModel)]="this.username"
+          (change)="onUsernameChanged()"
+        />
+      </div>
+      <div
+        class="ManagerButton"
+        data-toggle="modal"
+        (click)="managersModal.show()"
+      >
+        <span class="badge">{{ this.checkNewManager() ? "New" : "" }}</span>
+        Managers
+      </div>
+      <div
+        class="ManagerButton"
+        data-toggle="modal"
+        (click)="unclocksModal.show()"
+      >
+        <span class="badge"></span>
+        Unlocks
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="row" id="productRow">
+        <app-product
+          *ngFor="let product of world.products.product"
+          [prod]="product"
+          [serv]="server"
+          [qtmulti]="qtmulti"
+          [money]="world.money"
+          class="col-md-6 col-sm-12"
+          (notifyProduction)="onProductionDone($event)"
+          (notifyAchat)="onBuy($event)"
+        ></app-product>
+      </div>
+    </div>
+  </div>
+  <toaster-container></toaster-container>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<app-modal #managersModal>
+  <div class="app-modal-header">
+    <h4 class="modal-title">Managers make you feel better !</h4>
+  </div>
+  <div class="app-modal-body">
+    <div class="centerBlock">
+      <div class="row">
+        <div *ngFor="let manager of world.managers.pallier" class="col-6">
+          <div *ngIf="!manager.unlocked" class="row" id="ManagerCell">
+            <div class="col-md-4 text-center">
+              <img
+                [attr.src]="server + '/icones/' + manager.logo"
+                class="round"
+              />
+            </div>
+            <div class="col-md-8">
+              <button
+                class="HireButton"
+                [disabled]="
+                  manager.seuil > world.money ||
+                  world.products.product[manager.idcible - 1].quantite <= 0
+                "
+                (click)="hire(manager)"
+              >
+                Engager
+              </button>
+            </div>
+          </div>
+          <div class="ManagerName">Manager {{ manager.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="CloseButton" (click)="managersModal.hide()">
+      Close
+    </button>
+  </div>
+</app-modal>
 
+<app-modal #unclocksModal>
+  <div class="app-modal-header">
+    <h4 class="modal-title">Unlocks make you feel better !</h4>
+  </div>
+  <div class="app-modal-body">
+    <div class="centerBlock">
+      <div class="row">
+        <div *ngFor="let product of world.products.product" class="col-6">
+          <div
+            *ngFor="let unlock of product.palliers.pallier"
+            class="row"
+            id="ManagerCell"
+          >
+            <div class="col-md-4 text-center">
+              <img
+                [attr.src]="server + '/icones/' + unlock.logo"
+                class="round"
+              />
+            </div>
+            <div class="col-md-8">
+              {{ unlock.seuil }}
+            </div>
+          </div>
+          <div class="ManagerName">Unlock {{ product.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="CloseButton" (click)="unclocksModal.hide()">
+      Close
+    </button>
+  </div>
+</app-modal>

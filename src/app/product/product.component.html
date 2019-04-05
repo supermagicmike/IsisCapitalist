@@ -1,3 +1,21 @@
-<p>
-  product works!
-</p>
+<div class="row" id="ProductCell">
+  <div class="col-md-4 text-center">
+    <div class="product_name">
+      {{ this.product.name }}
+    </div>
+    <img
+      [attr.src]="this.Unlockdisp()? server + '/icones/' + this.getLastUnlock().logo :server + '/icones/' + this.product.logo"
+      class="round" (click)="startFabrication()" />
+    <div class="quantite">
+      {{this.Unlockdisp()}}
+      {{ this.product.quantite }}
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="progress" #bar></div>
+    <button class="achat_button" id="achat_produit" type="button" ng-model="button"
+      [disabled]="calcMaxCanBuy() > worldMoney" (click)="acheterProduit()">
+      {{ achat }} for {{ calcMaxCanBuy().toFixed(2) }} $
+    </button>
+  </div>
+</div>
