@@ -66,6 +66,7 @@ export class AppComponent implements OnInit {
         if (element.id == manager.idcible) {
           element.managerUnlocked = true;
           this.toasterService.pop("success", "Manager hired ! ", element.name);
+          this.service.putManager(manager);
         }
       });
     }
@@ -73,6 +74,7 @@ export class AppComponent implements OnInit {
   onUsernameChanged() {
     localStorage.setItem("username", this.username);
     this.service.setUser(this.username);
+    console.log("service username" + this.service.getUser())
   }
 
   checkNewManager() {
