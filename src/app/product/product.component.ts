@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import { Product } from "../world";
+import { Product, Pallier } from "../world";
 import { RestserviceService } from "../restservice.service";
 declare var require;
 
@@ -72,6 +72,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
+
   calcScore() {
     //si le manager est debloqué et que la prod est finie démarre une nouvelle prod
     if (this.product.managerUnlocked && this.product.timeleft == 0) {
@@ -98,7 +99,9 @@ export class ProductComponent implements OnInit {
     if (max < this.worldMoney) {
       this.notifyAchat.emit(this.calcMaxCanBuy());
       this.product.quantite += this.achat;
+      this.checkUnlocks()
       this.service.putProduct(this.product);
+
     }
   }
 
@@ -110,6 +113,43 @@ export class ProductComponent implements OnInit {
         }
       }
     })
+  }
+
+  checkUnlocks() {
+    this.product.palliers.pallier.forEach(element => {
+
+      if (!element.unlocked) {
+        if (element.seuil <= this.product.quantite) {
+          console.log("CA CHECK SEUIL " + element.seuil + "CA CHECK QT " + this.product.quantite)
+          element.unlocked = true
+
+          console.log(this.product.palliers.pallier[0].unlocked)
+          console.log(this.Unlockdisp())
+        }
+      }
+    })
+  }
+
+  getLastUnlock() {
+    let unlock: Pallier;
+    this.product.palliers.pallier.forEach(element => {
+      if (element.unlocked) {
+        unlock = element;
+      }
+    })
+    return unlock
+  }
+
+  Unlockdisp() {
+    this.product.palliers.pallier.forEach(element => {
+
+      if (element.unlocked) {
+        console.log("jepasse")
+        return true
+
+      }
+    }
+    )
   }
 
   calcMaxCanBuy() {
