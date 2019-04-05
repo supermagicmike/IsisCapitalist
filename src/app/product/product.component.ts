@@ -7,6 +7,7 @@ import {
   EventEmitter
 } from "@angular/core";
 import { Product } from "../world";
+import { RestserviceService } from "../restservice.service";
 declare var require;
 
 const ProgressBar = require("progressbar.js");
@@ -45,7 +46,7 @@ export class ProductComponent implements OnInit {
 
   @ViewChild("bar") progressBarItem;
 
-  constructor() {}
+  constructor(private service: RestserviceService) { }
 
   ngOnInit() {
     this.progressbar = new ProgressBar.Line(
@@ -86,6 +87,7 @@ export class ProductComponent implements OnInit {
           this.progressbar.set(0);
           // on prévient le composant parent que ce produit a généré son revenu.
           this.notifyProduction.emit(this.product);
+          this.service.putProduct(this.product);
         }
       }
     }
@@ -96,7 +98,18 @@ export class ProductComponent implements OnInit {
     if (max < this.worldMoney) {
       this.notifyAchat.emit(this.calcMaxCanBuy());
       this.product.quantite += this.achat;
+      this.service.putProduct(this.product);
     }
+  }
+
+  getImage() {
+    this.product.palliers.pallier.forEach(element => {
+      if (!element.unlocked) {
+        if (element.seuil <= this.product.quantite) {
+          return element.logo
+        }
+      }
+    })
   }
 
   calcMaxCanBuy() {
@@ -110,8 +123,8 @@ export class ProductComponent implements OnInit {
         Math.log(
           1 - (this.worldMoney * (1 - this.product.croissance)) / price
         ) /
-          Math.log(this.product.croissance) -
-          1
+        Math.log(this.product.croissance) -
+        1
       );
       console.log(multiplicateur);
       if (multiplicateur <= 0) {
