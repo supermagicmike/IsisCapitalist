@@ -13,15 +13,8 @@
       </div>
       <div class="col-md-4">
         <span id="worldCellMoney">
-          <span [innerHTML]="world.money | bigvalue" id="worlMoney"> </span
-          >$</span
-        >
-        <button
-          id="qtMulti"
-          type="button"
-          (click)="changeQtmulti()"
-          class="btn_btn-primary"
-        >
+          <span [innerHTML]="world.money | bigvalue" id="worlMoney"> </span>$</span>
+        <button id="qtMulti" type="button" (click)="changeQtmulti()" class="btn_btn-primary">
           {{ qtmulti }}
         </button>
       </div>
@@ -30,41 +23,22 @@
   <div class="row">
     <div class="col-md-2" id="OptionCell">
       <div class="UserName">
-        <input
-          type="text"
-          [(ngModel)]="this.username"
-          (change)="onUsernameChanged()"
-        />
+        <input type="text" [(ngModel)]="this.username" (change)="onUsernameChanged()" />
       </div>
-      <div
-        class="ManagerButton"
-        data-toggle="modal"
-        (click)="managersModal.show()"
-      >
+      <div class="ManagerButton" data-toggle="modal" (click)="managersModal.show()">
         <span class="badge">{{ this.checkNewManager() ? "New" : "" }}</span>
         Managers
       </div>
-      <div
-        class="ManagerButton"
-        data-toggle="modal"
-        (click)="unclocksModal.show()"
-      >
+      <div class="ManagerButton" data-toggle="modal" (click)="unclocksModal.show()">
         <span class="badge"></span>
         Unlocks
       </div>
     </div>
     <div class="col-md-10">
       <div class="row" id="productRow">
-        <app-product
-          *ngFor="let product of world.products.product"
-          [prod]="product"
-          [serv]="server"
-          [qtmulti]="qtmulti"
-          [money]="world.money"
-          class="col-md-6 col-sm-12"
-          (notifyProduction)="onProductionDone($event)"
-          (notifyAchat)="onBuy($event)"
-        ></app-product>
+        <app-product *ngFor="let product of world.products.product" [prod]="product" [serv]="server" [qtmulti]="qtmulti"
+          [money]="world.money" class="col-md-6 col-sm-12" (notifyProduction)="onProductionDone($event)"
+          (notifyAchat)="onBuy($event)"></app-product>
       </div>
     </div>
   </div>
@@ -80,21 +54,14 @@
         <div *ngFor="let manager of world.managers.pallier" class="col-6">
           <div *ngIf="!manager.unlocked" class="row" id="ManagerCell">
             <div class="col-md-4 text-center">
-              <img
-                [attr.src]="server + '/icones/' + manager.logo"
-                class="round"
-              />
+              <img [attr.src]="server + '/icones/' + manager.logo" class="round" />
             </div>
             <div class="col-md-8">
-              <button
-                class="HireButton"
-                [disabled]="
+              <button class="HireButton" [disabled]="
                   manager.seuil > world.money ||
                   world.products.product[manager.idcible - 1].quantite <= 0
-                "
-                (click)="hire(manager)"
-              >
-                Engager
+                " (click)="hire(manager)">
+                Engager pour {{manager.seuil}}
               </button>
             </div>
           </div>
@@ -118,16 +85,9 @@
     <div class="centerBlock">
       <div class="row">
         <div *ngFor="let product of world.products.product" class="col-6">
-          <div
-            *ngFor="let unlock of product.palliers.pallier"
-            class="row"
-            id="ManagerCell"
-          >
+          <div *ngFor="let unlock of product.palliers.pallier" class="row" id="ManagerCell">
             <div class="col-md-4 text-center">
-              <img
-                [attr.src]="server + '/icones/' + unlock.logo"
-                class="round"
-              />
+              <img [attr.src]="server + '/icones/' + unlock.logo" class="round" />
             </div>
             <div class="col-md-8">
               {{ unlock.seuil }}
