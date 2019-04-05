@@ -22,7 +22,7 @@
       [disabled]="calcMaxCanBuy() > worldMoney"
       (click)="acheterProduit()"
     >
-      {{ achat }} for {{ calcMaxCanBuy() }} $
+      {{ achat }} for {{ calcMaxCanBuy().toFixed(2) }} $
     </button>
   </div>
 </div>

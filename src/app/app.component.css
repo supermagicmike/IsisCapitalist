@@ -73,6 +73,10 @@
   [class*="col-md-6"] {
     max-width: 100%;
   }
+
+  [class*="btn_btn-primary"] {
+    margin-left: 0 !important;
+  }
 }
 
 @media only screen and (max-width: 552px) {
