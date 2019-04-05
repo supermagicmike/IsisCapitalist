@@ -8,6 +8,23 @@
 
 #worldName {
   font-size: 6em;
+  margin-left: 1em;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1050px) {
+  [id*="worldName"] {
+    font-size: 2em !important;
+  }
+  [class*="WorldLogo1"] {
+    margin-top: -1em !important;
+    height: 50px !important;
+    width: 50px !important;
+  }
+  [class*="WorldLogo2"] {
+    margin-top: -1em !important;
+    height: 50px !important;
+    width: 50px !important;
+  }
 }
 
 .product {
@@ -20,14 +37,14 @@
   display: table;
 }
 
-.WorldLogo1 {
+.WorldLogo2 {
   float: right;
   margin-top: 2em;
   height: 100px;
   width: 100px;
 }
 
-.WorldLogo2 {
+.WorldLogo1 {
   float: left;
   margin-top: 2em;
   height: 100px;

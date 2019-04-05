@@ -6,12 +6,10 @@
   </div>
   <div class="col-md-10">
     <div class="row">
-      <div class="col-md-8">
-        <div class="centerBlock">
-          <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo1" />
-          <span id="worldName">{{ world.name }}</span>
-          <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo2" />
-        </div>
+      <div class="col-md-8" style="margin-top:3em;">
+        <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo1" />
+        <span id="worldName">{{ world.name }}</span>
+        <img [attr.src]="server + '/icones/' + world.logo" class="WorldLogo2" />
       </div>
       <div class="col-md-4">
         <span id="worldCellMoney">

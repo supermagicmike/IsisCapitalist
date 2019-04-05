@@ -27,7 +27,7 @@
 }
 
 .ManagerButton {
-  margin-top: 15px;
+  margin-top: 1em;
   text-align: center;
   padding: 10px 15px;
   font-size: 25px;
@@ -67,10 +67,15 @@
 @media only screen and (min-width: 768px) and (max-width: 1000px) {
   [id*="OptionCell"] {
     width: 40em;
+    margin-top: 20px;
   }
 
   [class*="col-md-6"] {
     max-width: 100%;
+  }
+
+  [class*="btn_btn-primary"] {
+    margin-left: 0 !important;
   }
 }
 
@@ -81,9 +86,7 @@
   }
 
   [id*="productRow"] {
-    position: absolute;
     margin-bottom: 6em;
-    margin-left: 2em;
   }
 }
 
